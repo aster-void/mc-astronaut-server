@@ -1,3 +1,7 @@
 world/
 logs/
 crash-reports
+
+# cache
+usercache.json
+usernamecache.json
