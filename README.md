@@ -13,6 +13,17 @@ git clone https://github.com/aster-void/mcserver
 ./mcserver/run.sh
 ```
 
+# Bootstraping on a clean system
+
+Usually when you start a fresh VPS, you don't have anything useful installed*.
+
+0. set up SSH connection (how are you here without an SSH conn???)
+1. install curl if it's not installed.
+2. install nix. (DeterminateSystem's installed is recommended)
+3. `nix run nixpkgs#git clone https://github.com/aster-void/mcserver /srv/minecraft`
+4. `cd /srv/minecraft; nix develop`
+5. Now you can use nix, git, and every other utility tool.
+
 # Define a systemd module (advanced)
 
 ```sh
@@ -30,3 +41,4 @@ sudo systemctl start minecraft.service
 sudo systemctl daemon-reload
 sudo systemctl restart minecraft.service
 ```
+
