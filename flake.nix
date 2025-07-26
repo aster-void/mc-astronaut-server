@@ -18,9 +18,14 @@
     in {
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          # runtime dep
           openjdk
+          # build dep
           git
+
+          # general utilities
           ncdu
+          btop
         ];
       };
     });
