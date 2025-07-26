@@ -20,6 +20,7 @@
         packages = with pkgs; [
           openjdk
           git
+          ncdu
         ];
       };
     });
