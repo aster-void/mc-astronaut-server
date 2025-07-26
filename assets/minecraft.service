@@ -7,7 +7,8 @@ Wants=network-online.target
 Type=simple
 User=root
 Group=root
-ExecStart="/srv/minecraft/run.sh"
+ExecStart=/srv/minecraft/run.sh
+EnvironmentFile=/srv/minecraft/assets/nix.env
 Restart=always
 RestartSec=10
 
