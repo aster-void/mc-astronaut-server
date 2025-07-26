@@ -10,7 +10,7 @@ Group=root
 ExecStart=/srv/minecraft/run.sh
 EnvironmentFile=/srv/minecraft/assets/nix.env
 Restart=always
-RestartSec=10
+RestartSec=2
 
 # Optional: Resource limits
 # MemoryMax=4G
