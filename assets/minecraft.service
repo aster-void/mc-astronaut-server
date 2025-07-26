@@ -1,0 +1,19 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart="/srv/minecraft/run.sh"
+Restart=always
+RestartSec=10
+
+# Optional: Resource limits
+# MemoryMax=4G
+# CPUQuota=200%
+
+[Install]
+WantedBy=multi-user.target
