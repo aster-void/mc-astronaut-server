@@ -1,6 +1,6 @@
-#!/usr/bin/env nix
-#! nix shell nixpkgs#openjdk --command sh
+#!/usr/bin/env bash
 
+set -euo pipefail
 cd "$(dirname -- "$0")" || exit 1
 
 # Forge requires a configured set of both JVM and program arguments.

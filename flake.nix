@@ -20,6 +20,7 @@
       serverBin = pkgs.writeShellApplication {
         inherit name;
         runtimeInputs = [
+          pkgs.bash
           pkgs.openjdk24_headless
           pkgs.rsync
         ];
@@ -34,7 +35,7 @@
 
           # Always sync server files from source, preserving world data
           echo "Syncing server files (preserving world data)..."
-          
+
           # Copy new files and update existing ones, excluding world data
           rsync -av --delete \
             --exclude='world/' \
