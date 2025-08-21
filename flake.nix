@@ -21,20 +21,36 @@
         inherit name;
         runtimeInputs = [
           pkgs.openjdk24_headless
+          pkgs.rsync
         ];
         text = ''
           # Create and use a dedicated server directory
           SERVER_DIR=~/srv/github.com/aster-void/mc-astronaut-server
+          SOURCE_DIR=${./.}
 
           # Create server directory if it doesn't exist
           mkdir -p "$SERVER_DIR"
           cd "$SERVER_DIR"
 
-          # Copy server files from source if they don't exist
-          if [ ! -f "user_jvm_args.txt" ]; then
-            cp -r ${./.}/* . 2>/dev/null || true
-            chmod -R u+w . 2>/dev/null || true
-          fi
+          # Always sync server files from source, preserving world data
+          echo "Syncing server files (preserving world data)..."
+          
+          # Copy new files and update existing ones, excluding world data
+          rsync -av --delete \
+            --exclude='world/' \
+            --exclude='logs/' \
+            --exclude='crash-reports/' \
+            --exclude='playerdata/' \
+            --exclude='stats/' \
+            --exclude='advancements/' \
+            --exclude='usercache.json' \
+            --exclude='whitelist.json' \
+            --exclude='ops.json' \
+            --exclude='banned-*.json' \
+            "$SOURCE_DIR"/ ./
+
+          chmod -R u+w . 2>/dev/null || true
+          echo "Server files updated. Starting server..."
           ./run.sh
         '';
       };
