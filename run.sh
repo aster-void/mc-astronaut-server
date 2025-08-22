@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-cd "$(dirname -- "$0")" || exit 1
 
 # Forge requires a configured set of both JVM and program arguments.
 # Add custom JVM arguments to the user_jvm_args.txt
